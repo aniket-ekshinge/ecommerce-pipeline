@@ -1,0 +1,35 @@
+# E-Commerce Sales Analytics Pipeline
+
+## Project overview
+End-to-end data engineering pipeline processing 1M+ rows of real UK
+e-commerce transaction data (Online Retail II, UCI / Kaggle).
+Covers ingestion, transformation, warehousing, and BI dashboards.
+
+## Tech stack
+| Layer | Tool |
+|---|---|
+| Orchestration | Apache Airflow |
+| Warehouse | PostgreSQL + Snowflake (free tier) |
+| Transformation | dbt Core |
+| Visualization | Power BI + Tableau Public |
+| Language | Python 3.12 |
+
+## Dataset summary
+- Source: Online Retail II (UCI) via Kaggle
+- Rows: 1,067,371 | Columns: 8
+- Date range: Dec 2009 – Dec 2011
+- Countries: 43
+- Unique customers: 5,942
+- Unique products:  5,305
+
+## Data quality findings
+| Issue | Count | Handling |
+|---|---|---|
+| Missing Customer ID | 243,007 | Assigned synthetic ID |
+| Cancelled invoices (C prefix) | 8,292 | Filtered to separate table |
+| Negative quantities | 22,950 | Linked to cancellations |
+| Zero-price rows | 6,207 | Excluded from revenue calc |
+| Full duplicate rows | 34,335 | De-duplicated in ETL |
+
+## Architecture
+[diagram will go here in Phase 4]
