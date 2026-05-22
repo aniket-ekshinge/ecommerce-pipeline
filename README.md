@@ -31,5 +31,18 @@ Covers ingestion, transformation, warehousing, and BI dashboards.
 | Zero-price rows | 6,207 | Excluded from revenue calc |
 | Full duplicate rows | 34,335 | De-duplicated in ETL |
 
+## ETL pipeline
+
+| Table          | Rows loaded |
+|---|---|
+| dim_geography  | 38          |
+| dim_product    | ~4,070      |
+| dim_customer   | ~5,900      |
+| dim_date       | 1,461       |
+| fact_orders    | ~1,047,000  |
+
+Pipeline runtime: ~2 min on local machine.
+Re-run with: `python etl/run_pipeline.py`
+
 ## Architecture
 [diagram will go here in Phase 4]
