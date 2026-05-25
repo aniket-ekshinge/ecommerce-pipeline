@@ -45,4 +45,20 @@ Pipeline runtime: ~2 min on local machine.
 Re-run with: `python etl/run_pipeline.py`
 
 ## Architecture
-[diagram will go here in Phase 4]
+
+
+## Orchestration
+
+Scheduled daily at 02:00 UTC via Apache Airflow 2.9.1.
+
+| Task              | Description                            |
+|---|---|
+| check_source      | Verify CSV exists and is > 1MB         |
+| extract_data      | Read CSV, push row count via XCom      |
+| validate_data     | Gate: must have > 900k rows            |
+| transform_and_load| Full ETL pipeline                      |
+| data_quality_check| Verify warehouse table counts          |
+| notify_success    | Log run summary                        |
+
+Start the stack: `docker compose up -d`
+Airflow UI: http://localhost:8080 (admin/admin)
