@@ -1,9 +1,25 @@
-# .gitignore
 .env
 data/raw/
 data/processed/
+
 __pycache__/
 *.pyc
-.DS_Store
 *.egg-info/
+
+.DS_Store
+
 venv/
+
+# Airflow logs
+logs/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# Airflow metadata
+airflow.db
+
+# IDE files
+.vscode/
+.idea/
