@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: mart_executive
+    description: "Daily revenue metrics for executive dashboard. One row per day."
+    columns:
+      - name: order_date
+        description: "Calendar date of orders"
+        data_tests: [not_null, unique]
+      - name: total_revenue
+        description: "Sum of revenue for this day (non-cancelled orders only)"
+        data_tests: [not_null]
+      - name: orders_count
+        data_tests: [not_null]
+      - name: avg_order_value
+        data_tests: [not_null]
+
+  - name: mart_customers
+    description: "One row per non-guest customer with RFM scores and lifetime value."
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: rfm_segment
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Champions'
+                - 'Loyal customers'
+                - 'New customers'
+                - 'At risk'
+                - 'Lost'
+                - 'Potential loyalists'
+      - name: total_revenue
+        data_tests: [not_null]
+      - name: is_guest
+        data_tests:
+          - accepted_values:
+              values: [false]
+
+  - name: mart_products
+    description: "One row per product with sales performance metrics."
+    columns:
+      - name: stock_code
+        data_tests: [unique, not_null]
+      - name: price_tier
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['budget', 'economy', 'standard', 'premium', 'luxury']
+      - name: total_revenue
+        data_tests: [not_null]

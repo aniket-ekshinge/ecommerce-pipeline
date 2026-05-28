@@ -1,0 +1,48 @@
+version: 2
+
+sources:
+  - name: warehouse
+    database: ecommerce_dw
+    schema: public
+    description: "Raw star schema loaded by the Phase 3 ETL pipeline"
+    tables:
+      - name: fact_orders
+        description: "One row per order line item"
+        columns:
+          - name: order_line_id
+            description: "Primary key"
+            data_tests: [unique, not_null]
+          - name: invoice_id
+            data_tests: [not_null]
+          - name: stock_code
+            data_tests: [not_null]
+          - name: customer_id
+            data_tests: [not_null]
+          - name: date_id
+            data_tests: [not_null]
+          - name: quantity
+            data_tests: [not_null]
+          - name: unit_price
+            data_tests: [not_null]
+
+      - name: dim_customer
+        columns:
+          - name: customer_id
+            datatests: [unique, not_null]
+
+      - name: dim_product
+        columns:
+          - name: stock_code
+            data_tests: [unique, not_null]
+
+      - name: dim_date
+        columns:
+          - name: date_id
+            tests: [unique, not_null]
+          - name: full_date
+            data_tests: [not_null]
+
+      - name: dim_geography
+        columns:
+          - name: country
+            data_tests: [unique, not_null]
