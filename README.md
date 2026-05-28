@@ -62,3 +62,16 @@ Scheduled daily at 02:00 UTC via Apache Airflow 2.9.1.
 
 Start the stack: `docker compose up -d`
 Airflow UI: http://localhost:8080 (admin/admin)
+
+
+## dbt transformations
+
+10 models across 3 layers, 25 automated tests.
+
+| Layer        | Models | Purpose                           |
+|---|---|---|
+| Staging      | 4      | Clean, rename, cast raw tables    |
+| Intermediate | 3      | RFM scoring, revenue, enrichment  |
+| Marts        | 3      | Power BI-ready aggregated tables  |
+
+Run: `cd dbt/ecommerce_dbt && dbt run && dbt test`
